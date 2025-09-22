@@ -3,23 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "concurrently \"tsx watch express/server.ts\" \"next dev --turbopack\"",
     "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "concurrently \"tsx express/server.ts\" \"next start\"",
+    "lint": "eslint",
+    "test": "concurrently \"tsx watch express/server.ts\" \"vitest watch\"",
+    "server": "tsx watch express/server.ts"
   },
   "dependencies": {
+    "concurrently": "^9.2.1",
+    "express": "^5.1.0",
+    "next": "15.5.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.3"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@eslint/eslintrc": "^3",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/express": "^5.0.3",
+    "@types/node": "^20.19.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
-    "@eslint/eslintrc": "^3"
+    "jsdom": "^27.0.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   }
 }
