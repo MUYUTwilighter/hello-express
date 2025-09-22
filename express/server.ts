@@ -15,11 +15,13 @@ ROUTER.get("/ip", (req, res) => {
   res.type("text/plain").send(`Your IP address is ${ip}`);
 });
 
-// Next.js generates default 404 page for other routes
-
 // This is not a React hook, suppress the lint warning
 // eslint-disable-next-line react-hooks/rules-of-hooks
 APP.use(ROUTER);
+// eslint-disable-next-line react-hooks/rules-of-hooks
+APP.use((_, res) => {
+  res.status(404).type("text/plain").send("Not Found");
+});
 APP.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
